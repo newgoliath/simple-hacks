@@ -15,7 +15,7 @@ my @data;
 for my $l  ( @lines )  {
 	my @values = quotewords("," => 0, $l) ;
 	#print Dumper @values;
-	push @data, join " -:- ", @values[3,13,1,9], "\n";
+	push @data, join " : ", @values[3,13,1,9], "\n";
 }
 
 print sort @data;
