@@ -1,0 +1,11 @@
+= simple CA
+
+Passwordless
+
+Creates Intermediary CAs
+
+Good for class.  Creates a second intermediary CA to replace your first one with.  Great for labs.
+
+(c) 2017, Judd Maltin for Red Hat, Inc.
+
+Apache 2.0 License
