@@ -75,7 +75,7 @@ stateOrProvinceName             = North Carolina
 localityName                    = Raleigh
 0.organizationName              = Red Hat, Inc.
 organizationalUnitName          = GPTE DevOps
-commonName                      = Cert Module
+commonName                      = Cert Module Intermediate 1
 emailAddress                    = gpte-devops-automation@redhat.com
 
 [ v3_ca ]
