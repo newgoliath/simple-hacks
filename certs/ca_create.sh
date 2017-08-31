@@ -73,3 +73,27 @@ echo --- verifying the Intermediate cert
 openssl verify -CAfile ${CA_DIR}/certs/ca.cert.pem \
       ${INTER_DIR}/certs/intermediate.cert.pem
 
+
+echo --- creating the SERVER KEY
+SERVER_NAME="loadbalancer.alb1.example.opentlc.com"
+openssl genrsa -aes256 \
+      -out ${INTER_DIR}/private/${SERVER_NAME}.key.pem 2048
+
+echo --- creating the SERVER CSR
+# server key and certificate
+openssl req -nodes -new -sha256 \
+      -config ${DIR}/${SERVER}.cnf -extensions server_cert \
+      -key ${INTER_DIR}/private/${SERVER_NAME}.key.pem \
+      -out ${INTER_DIR}/csr/${SERVER_NAME}.csr.pem
+
+echo --- creating the SERVER CERT
+openssl ca -config ${DIR}/${SERVER}.cnf -extensions server_cert \
+	-days 100 -notext -md sha256 \
+	-in ${INTER_DIR}/csr/${SERVER_NAME}.csr.pem \
+	-out ${INTER_DIR}/cert/${SERVER_NAME}.cert.pem
+
+echo --- verify the SERVER CERT
+openssl x509 -noout -text \
+	-in ${INTER_DIR}/cert/${SERVER_NAME}.cert.pem
+  -out server.crt -in server.csr
+
