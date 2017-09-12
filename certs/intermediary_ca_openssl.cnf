@@ -7,7 +7,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = /home/opentlc-mgr/newgoliath/simple-hacks/certs/ca/intermediate
+dir               = /home/opentlc-mgr/newgoliath/simple-hacks/certs/ca/intermediary
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -15,13 +15,13 @@ database          = $dir/index.txt
 serial            = $dir/serial
 RANDFILE          = $dir/private/.rand
 
-# The intermediate key and intermediate certificate.
-private_key     = $dir/private/intermediate.key.pem
-certificate     = $dir/certs/intermediate.cert.pem
+# The intermediary key and intermediary certificate.
+private_key     = $dir/private/intermediary.key.pem
+certificate     = $dir/certs/intermediary.cert.pem
 
 # For certificate revocation lists.
 crlnumber         = $dir/crlnumber
-crl               = $dir/crl/intermediate.crl.pem
+crl               = $dir/crl/intermediary.crl.pem
 crl_extensions    = crl_ext
 default_crl_days  = 30
 
@@ -35,7 +35,7 @@ preserve          = no
 policy            = policy_loose
 
 [ policy_strict ]
-# The root CA should only sign intermediate certificates that match.
+# The root CA should only sign intermediary certificates that match.
 # See the POLICY FORMAT section of `man ca`.
 countryName             = match
 stateOrProvinceName     = match
@@ -45,7 +45,7 @@ commonName              = supplied
 emailAddress            = optional
 
 [ policy_loose ]
-# Allow the intermediate CA to sign a more diverse range of certificates.
+# Allow the intermediary CA to sign a more diverse range of certificates.
 # See the POLICY FORMAT section of the `ca` man page.
 countryName             = optional
 stateOrProvinceName     = optional
@@ -75,7 +75,7 @@ stateOrProvinceName             = North Carolina
 localityName                    = Raleigh
 0.organizationName              = Red Hat, Inc.
 organizationalUnitName          = GPTE DevOps
-commonName                      = Cert Module Intermediate 1
+commonName                      = Red Hat OpenTLC Classroom Intermediary CA
 emailAddress                    = gpte-devops-automation@redhat.com
 
 [ v3_ca ]
@@ -85,8 +85,8 @@ authorityKeyIdentifier = keyid:always,issuer
 basicConstraints = critical, CA:true
 keyUsage = critical, digitalSignature, cRLSign, keyCertSign
 
-[ v3_intermediate_ca ]
-# Extensions for a typical intermediate CA (`man x509v3_config`).
+[ v3_intermediary_ca ]
+# Extensions for a typical intermediary CA (`man x509v3_config`).
 subjectKeyIdentifier = hash
 authorityKeyIdentifier = keyid:always,issuer
 basicConstraints = critical, CA:true, pathlen:0

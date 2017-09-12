@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# create a Certificate Authority in $PWD
-
+GUID=${GUID-'rdu1'}
 DIR="${DIR:-`pwd`}"
 echo "Working directory: ${DIR}"
 cd ${DIR}
@@ -9,13 +8,14 @@ cd ${DIR}
 CA_DIR=${DIR}/ca
 cd ${CA_DIR}
 
-# create the second intermediate cert to be used in OpenShift
-INTER_DIR=${CA_DIR}/intermediate
+# create the second intermediary cert to be used in OpenShift
+INTER_DIR=${CA_DIR}/intermediary
 mkdir ${INTER_DIR}
 cd ${INTER_DIR}
 
+WILDCARD_NAME="wildcard.apps.${GUID}.example.opentlc.com"
+
 echo --- creating the WILDCARD KEY
-WILDCARD_NAME="*.apps.alb1.example.opentlc.com"
 openssl genrsa -out ${INTER_DIR}/private/${WILDCARD_NAME}.key.pem 2048
 
 echo --- creating the WILDCARD CSR
@@ -34,4 +34,3 @@ openssl ca -config ${DIR}/${WILDCARD_NAME}.cnf -extensions server_cert \
 echo --- verify the WILDCARD CERT
 openssl x509 -noout -text \
 	-in ${INTER_DIR}/certs/${WILDCARD_NAME}.cert.pem
-

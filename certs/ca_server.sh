@@ -2,6 +2,7 @@
 
 # create a Certificate Authority in $PWD
 
+GUID=${GUID:-'rdu1'}
 DIR="${DIR:-`pwd`}"
 echo "Working directory: ${DIR}"
 cd ${DIR}
@@ -9,13 +10,14 @@ cd ${DIR}
 CA_DIR=${DIR}/ca
 cd ${CA_DIR}
 
-# create the second intermediate cert to be used in OpenShift
-INTER_DIR=${CA_DIR}/intermediate
+# create the second intermediary cert to be used in OpenShift
+INTER_DIR=${CA_DIR}/intermediary
 mkdir ${INTER_DIR}
 cd ${INTER_DIR}
 
+SERVER_NAME="loadbalancer.${GUID}.example.opentlc.com"
+
 echo --- creating the SERVER KEY
-SERVER_NAME="loadbalancer.alb1.example.opentlc.com"
 openssl genrsa -out ${INTER_DIR}/private/${SERVER_NAME}.key.pem 2048
 
 echo --- creating the SERVER CSR
