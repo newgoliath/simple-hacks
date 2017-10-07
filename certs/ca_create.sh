@@ -10,12 +10,10 @@ cd ${DIR}
 # make the basics
 echo --- preparing environment
 CA_DIR=${DIR}/ca
-mkdir ${CA_DIR}
-cd ${CA_DIR}
-mkdir certs crl newcerts private
-chmod 700 private
-touch index.txt
-echo 1000 > serial
+mkdir -p ${CA_DIR}/certs ${CA_DIR}/crl ${CA_DIR}/newcerts ${CA_DIR}/private
+chmod 700 ${CA_DIR}/private
+touch ${CA_DIR}/index.txt
+echo 1000 > ${CA_DIR}/serial
 
 # create the root key
 echo --- creating the ROOT CERT
@@ -26,7 +24,7 @@ openssl genrsa -out ${CA_DIR}/private/ca.key.pem 4096
 echo --- creating the ROOT KEY
 # create the root cert
 openssl req -config "${DIR}/root_ca_openssl.cnf" \
-      -key private/ca.key.pem \
+      -key ${CA_DIR}/private/ca.key.pem \
       -new -x509 -days 7300 -sha256 -extensions v3_ca \
       -out ${CA_DIR}/certs/ca.cert.pem 
       #-passin pass:password1 \
@@ -36,10 +34,9 @@ openssl req -config "${DIR}/root_ca_openssl.cnf" \
 # create the intermediary cert to be used in OpenShift
 INTER_DIR=${CA_DIR}/intermediary
 mkdir ${INTER_DIR}
-cd ${INTER_DIR}
-mkdir certs crl csr newcerts private
-chmod 700 private
-touch index.txt
+mkdir ${INTER_DIR}/certs ${INTER_DIR}/crl ${INTER_DIR}/csr ${INTER_DIR}/newcerts ${INTER_DIR}/private
+chmod 700 ${INTER_DIR}/private
+touch ${INTER_DIR}/index.txt
 echo 1000 > ${INTER_DIR}/crlnumber
 echo 1000 > ${INTER_DIR}/serial
 

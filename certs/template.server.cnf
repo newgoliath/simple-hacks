@@ -1,4 +1,4 @@
-# OpenSSL root CA configuration file.
+# OpenSSL server cert configuration file.
 # Copy to `/root/ca/openssl.cnf`.
 
 [ ca ]
@@ -7,7 +7,7 @@ default_ca = CA_default
 
 [ CA_default ]
 # Directory and file locations.
-dir               = /home/opentlc-mgr/newgoliath/simple-hacks/certs/ca/intermediary
+dir               = ca/intermediary
 certs             = $dir/certs
 crl_dir           = $dir/crl
 new_certs_dir     = $dir/newcerts
@@ -75,7 +75,7 @@ stateOrProvinceName             = North Carolina
 localityName                    = Raleigh
 0.organizationName              = Red Hat, Inc.
 organizationalUnitName          = GPTE DevOps
-commonName                      = *.apps.alb1.example.opentlc.com
+commonName                      = $ENV::cn
 emailAddress                    = gpte-devops-automation@redhat.com
 
 [ v3_ca ]
