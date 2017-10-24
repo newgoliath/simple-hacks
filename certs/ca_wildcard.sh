@@ -8,8 +8,8 @@ cd ${DIR}
 CA_DIR=${DIR}/ca
 cd ${CA_DIR}
 
-# create the second intermediary cert to be used in OpenShift
-INTER_DIR=${CA_DIR}/intermediary
+# create the second intermediate cert to be used in OpenShift
+INTER_DIR=${CA_DIR}/intermediate
 mkdir ${INTER_DIR}
 cd ${INTER_DIR}
 

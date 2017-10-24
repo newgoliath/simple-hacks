@@ -70,8 +70,8 @@ IFS=',' read -r -a HOSTNAMES_A <<< "${HOSTNAMES}"
 
 # clean up old cert indexes to prevent collisions
 #find . -name 'index.txt*' -delete
-rm ca/intermediary/index.txt
-touch ca/intermediary/index.txt
+rm ca/intermediate/index.txt
+touch ca/intermediate/index.txt
 
 for SERVER_NAME in "${HOSTNAMES_A[@]}"
 do
