@@ -11,16 +11,16 @@
 # -h accept comma delimited hostnames (hostname or fqdn) NO SPACES for all named certs.
 # -o output path
 
-GUID="judd1"
-DOMAINNAME="example.opentlc.com"
+GUID="${GUID:-judd1}"
+DOMAINNAME="${DOMAINNAME:-example.opentlc.com}"
 GUID_DOMAIN="${GUID}.${DOMAINNAME}"
-OUT_PATH="/tmp/"
+OUT_PATH="${OUT_PATH:-/tmp/}"
 HOSTNAMES="master1,anotherdomain.example.com"
 
 while getopts ":d:o:g:h:" opt ; do
 	case $opt in
 		d)
-			echo "DOAMINANME: ${OPTARG}"
+			echo "DOMAINANME: ${OPTARG}"
 			DOMAINNAME="${OPTARG}"
       		;;
 		g)
@@ -33,7 +33,7 @@ while getopts ":d:o:g:h:" opt ; do
 			;;
 		h)
 			echo "HOSTNAMES = $OPTARG" >&2
-			HOSTNAMES="${OUT_PATH}"
+			HOSTNAMES="${OPTARG}"
 		;;
 	esac
 done
