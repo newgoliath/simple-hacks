@@ -2,9 +2,9 @@
 
 Passwordless
 
-Creates Intermediary CAs
+Creates Intermediate CAs
 
-Good for class.  Creates a second intermediary CA to replace your first one with.  Great for labs.
+Good for class.  Creates a second intermediate CA to replace your first one with.  Great for labs.
 
 (c) 2017, Judd Maltin for Red Hat, Inc.
 
